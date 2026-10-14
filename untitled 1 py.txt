@@ -1,0 +1,271 @@
+# student record and academic managment system  
+students = { }
+deparments = set ()
+subjects_clubes = set()
+
+#  1. add student
+def add_student ():
+    roll = input("ener rollnumber :")
+
+    if roll in  students:
+        print("students record already exists")
+        return
+
+    name = input("enter student name :")
+    department = input("enter departmet :")
+    reg_no = input("enter resistration number : ")
+    dob = input ("enter date of birth : ")
+    address = input("enter address:")
+    email = input ("enter email id : ")
+
+    subjects = input("enter subjects separated bycommas: ").split(",")
+    subjects = [s.strip() for s in subjects if s.strip () ]
+
+    if not subjects :
+        print("please enter at least one subject .")
+        return
+
+    marks = []
+    for subject in subjects:
+        while true:
+            try:
+                mark = float(input)(f"enter marks for"{subject}
+                if 0 <=mark ,=100:
+                    marks.append(mark)       
+                    break
+                print("marks must be between 0 and 100 . ")    
+            expect value error :
+              print("enter a valid number .")
+
+attendence = input ("enter attendence percentage: ") 
+club = input ("enter student club: ")
+
+
+# tuple 
+student_details = (roll, reg_no, dob)
+
+
+# Dictionary 
+students [roll] = {
+    "details": name,
+    "department": department,
+    "subjects": subjects,
+    "marks": marks,
+    "attendence": attendence ,
+    "contact": {"address": address,"email": email},
+    "club": club
+
+}
+
+
+# sets 
+deparments.add(department)
+subjects_set.update(subjects)
+if club:
+   student_clubs.add(club)
+
+   print ("student added sucessfully !")
+
+
+# 2. search student
+def search_student () :
+    roll = input("enter roll number to search : ")
+
+    if roll in students :
+       print(students[roll])
+
+    else:
+        print("student not found.")
+
+
+# 3. update student
+def update_student
+    roll = input ("enter roll number to update: ")
+
+    if roll not in students :
+        print("student not found ")
+        return
+
+
+print("1. update name ")
+print("2. update department ")
+print("3. update attendence")
+print("4. update email")
+
+choice = input ("enter your choice")
+if choice == "1":
+   students[roll] ["name"] = input("enter new name:")
+
+elif choice =="2"
+     students[roll] ["department"] = input ("enter new department")
+     departments.add(students[roll] ["department"])            
+
+elif choice == "3":
+     students[roll]["attendence"] = input(
+         "enter new attendence percentage: "
+     )
+
+elif choice == "4" :
+    students[roll] ["contact"]["email"][ = input("enter new email: ")
+
+else :
+    print ("record updated successfully!")      
+
+
+# 4. delete student 
+def delete_student () :
+    roll = inout ("enter roll number to delete: ") 
+
+    if roll in students :
+       del students [roll]  
+       print("student record delete successfully !")
+    else:
+       print (" student not found.")
+
+
+#5. display all students 
+def display_students():
+    if not students:
+       print("no students record available.")
+       return
+
+
+    for roll, student in students .items():
+        print("\n----------------------------")
+        print("roll number:", roll)
+        print("name:", student["name"])
+        print("department:", student["department"])
+        print("registration & DOB :", student["details"][1:])
+        print("subjects:", student["subjects"])
+        print("marks:", student["marks"])
+        print("attendence:", student["attendence"])
+        pint("contact:", student ["club"])
+
+
+# 6. calculate average marks 
+def calculate_average():
+    roll = input("enter roll number: ")
+
+    if roll in students :
+       marks = students[roll]["marks"]
+
+       if marks:
+           average = sum(marks) /len(marks)
+           print("average marks:",round (average, 2))
+
+    else:
+        print("no marks available.")
+    else:
+        print("student not found.")
+
+
+# 7. find highest scorer
+def highest_scorer():
+    if not students:
+         print("no student records available.")
+         return
+
+    valid_students = [
+        (roll, student)
+        for roll,student in students.items()
+        if student["marks"]
+]
+
+    if not valid_students:
+        print("no marks available.")
+        return
+
+    roll,student = max(
+         valid_students,
+         key=lambda item: sum(item[1]["marks"]) / len(item[1]["marks"])
+    )    
+
+average = sum(student["marks"]) / len(item[1]["marks"])
+
+print("highest scorer:",student["name"])
+print("roll number:",round (average, 2))
+print("average marks:", round(average,2))   
+
+
+# 8. list students by department
+def list_by_department ():
+    dept = input("enter department: ")
+
+    found = False
+
+    for roll, student in students .items ():
+        if student["department"].lower() == dept.lower():
+           print(roll, "-",student["name"])
+           found = True
+
+    if not found:
+         print("no students found in this department.") 
+
+
+
+# 9. count students 
+ def count_students() :
+      print("total students :", len(students))
+
+
+
+# 10. display available collections
+def display_collections():
+    print("departments:",departments)
+    print("subjects:", subjects_set)
+    print("student clubs:", student_clubs)
+
+
+
+# main menu
+while true :
+    print("\n===== STUDENT MANAGMENT SYSTEM =====")    
+    print("1. Add student")
+    print("2. search student")
+    print("3. update student")
+    print("4. delete student")
+    print("5. display all students")
+    print("6  calculate average marks")
+    print("7. fint highest scorer")
+    print("8. list student by department")
+    print("9. count students")
+    print("10. display department,subjects and clubs")
+    print("0.  exit")
+
+    choice = input(enter your choice)
+
+    if choice == "1":
+       add_student()
+    elif choice == "2":
+        search_student()
+    elif choice == "3":  
+        update_student()  
+    elife choice =="4": 
+        delete_student()
+    elif choice =="5":
+         display_students()
+    elif choice =="6": 
+        calculate_average() 
+    elif choice =="7":     
+         highest_scorer()
+    elif choice =="8":
+         list_by_deparment()
+    elif choice =="9":
+         count_students()
+    elif choice =="10":
+        dispay_collection ()
+    elif choice =="0":
+         print("thank you !")
+         break
+    else :
+         print(" invalid choice. try again. ")    
+
+
+
+         
+   PRN NO :  2126UDSF1055
+    NAME : DNAGE SHRADDHA GORAKSHNATH 
+   F.Y : AIDS 
+   PYTHON ASSIGNMENT
+
+
